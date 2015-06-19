@@ -26,6 +26,7 @@ int main ()
     struct sockaddr_storage sender = {0};
     socklen_t sendsize = sizeof(sender);
     struct ifreq ifr;
+    //tcpdump ip6 and udp and src port 4936 and dst port 4936 -dd
     struct sock_filter code[] = {
         { 0x28, 0, 0, 0x0000000c },
         { 0x15, 0, 7, 0x000086dd },
@@ -85,6 +86,11 @@ int main ()
 
     if (setsockopt(sock, SOL_SOCKET, SO_ATTACH_FILTER, &bpf, sizeof(bpf)) < 0) {
         perror("\n Failed to attach filter");
+        return -1;
+    }
+
+    if (setsockopt(sockfd, SOL_SOCKET, SO_LOCK_FILTER, &bpf, sizeof(bpf)) < 0) {
+        perror("\n Failed to lock filter");
         return -1;
     }
 
