@@ -28,13 +28,11 @@ int main ()
     struct ifreq ifr;
     //tcpdump ip6 and udp and src port 4936 and dst port 4936 -dd
     struct sock_filter code[] = {
-        { 0x28, 0, 0, 0x0000000c },
-        { 0x15, 0, 7, 0x000086dd },
-        { 0x30, 0, 0, 0x00000014 },
+        { 0x30, 0, 0, 0x00000008 },
         { 0x15, 0, 5, 0x00000011 },
-        { 0x28, 0, 0, 0x00000036 },
+        { 0x28, 0, 0, 0x0000002a },
         { 0x15, 0, 3, 0x00001348 },
-        { 0x28, 0, 0, 0x00000038 },
+        { 0x28, 0, 0, 0x0000002c },
         { 0x15, 0, 1, 0x00001348 },
         { 0x6, 0, 0, 0x0000ffff },
         { 0x6, 0, 0, 0x00000000 },
@@ -83,16 +81,22 @@ int main ()
         printf("\n Failed to set IP_HDRINCL options");
         return -1;
     }
-
+    
+    if (setsockopt(sock, SOL_SOCKET, SO_DEBUG, &tmp, sizeof(tmp)) < 0) {
+        printf("\n Failed to set debug options");
+        return -1;
+    }
+#if 0
     if (setsockopt(sock, SOL_SOCKET, SO_ATTACH_FILTER, &bpf, sizeof(bpf)) < 0) {
         perror("\n Failed to attach filter");
         return -1;
     }
 
-    if (setsockopt(sockfd, SOL_SOCKET, SO_LOCK_FILTER, &bpf, sizeof(bpf)) < 0) {
+    if (setsockopt(sock, SOL_SOCKET, SO_LOCK_FILTER, &bpf, sizeof(bpf)) < 0) {
         perror("\n Failed to lock filter");
         return -1;
     }
+#endif
 
     if (setsockopt(sock, SOL_SOCKET, SO_BINDTODEVICE, 
                 (void *)&ifr, sizeof(ifr)) < 0) {
