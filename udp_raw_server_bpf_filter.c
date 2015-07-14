@@ -28,25 +28,26 @@ int main ()
     struct ifreq ifr;
     //tcpdump ip6 and udp and src port 4936 and dst port 4936 -dd
     struct sock_filter code[] = {
-        { 0x30, 0, 0, 0x00000008 },
+        { 0x28, 0, 0, 0x0000000c },
+        { 0x15, 0, 7, 0x000086dd },
+        { 0x30, 0, 0, 0x00000014 },
         { 0x15, 0, 5, 0x00000011 },
-        { 0x28, 0, 0, 0x0000002a },
+        { 0x28, 0, 0, 0x00000036 },
         { 0x15, 0, 3, 0x00001348 },
-        { 0x28, 0, 0, 0x0000002c },
+        { 0x28, 0, 0, 0x00000038 },
         { 0x15, 0, 1, 0x00001348 },
         { 0x6, 0, 0, 0x0000ffff },
         { 0x6, 0, 0, 0x00000000 },
     };
     struct sock_fprog bpf = {
-        .len = sizeof(code)/sizeof(code[0]),
+        .len = 4,
         .filter = code,
     };
 
-
+//    printf("\n filter len %d",bpf.len);
     memset(&ifr, 0, sizeof(ifr));
-    snprintf(ifr.ifr_name, sizeof(ifr.ifr_name), "eth1");
-    sock = socket(AF_INET6, SOCK_RAW, IPPROTO_UDP);
-//    sock = socket(AF_INET6, SOCK_DGRAM, IPPROTO_UDP);
+//    sock = socket(AF_INET6, SOCK_RAW, IPPROTO_UDP);
+    sock = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL));
     printf("\nSocket created is %d", sock);
     if (sock < 0) {
         return -1;
@@ -65,28 +66,13 @@ int main ()
     }
 
     if (multi_addr) {
-        printf("\nAddress %s", inet_ntop(AF_INET6, &multi_addr->sin6_addr,
-                                         ipv6_addr_str, INET_ADDRSTRLEN)); 
+ //       printf("\nAddress %s", inet_ntop(AF_INET6, &multi_addr->sin6_addr,
+ //                                        ipv6_addr_str, INET_ADDRSTRLEN)); 
     }
     mreq.ipv6mr_multiaddr = multi_addr->sin6_addr;
     mreq.ipv6mr_interface = 0;
 
-    if (setsockopt(sock, IPPROTO_IPV6, IPV6_JOIN_GROUP, (char *)&mreq,
-                    sizeof(mreq)) != 0) {
-        printf("\nFailed to join group");
-        return -1;
-    }
 
-    if (setsockopt(sock, IPPROTO_IPV6, IP_HDRINCL, &tmp, sizeof(tmp)) < 0 ) {
-        printf("\n Failed to set IP_HDRINCL options");
-        return -1;
-    }
-    
-    if (setsockopt(sock, SOL_SOCKET, SO_DEBUG, &tmp, sizeof(tmp)) < 0) {
-        printf("\n Failed to set debug options");
-        return -1;
-    }
-#if 0
     if (setsockopt(sock, SOL_SOCKET, SO_ATTACH_FILTER, &bpf, sizeof(bpf)) < 0) {
         perror("\n Failed to attach filter");
         return -1;
@@ -96,13 +82,24 @@ int main ()
         perror("\n Failed to lock filter");
         return -1;
     }
-#endif
+    
+#if 0
+    if (setsockopt(sock, IPPROTO_IPV6, IPV6_JOIN_GROUP, (char *)&mreq,
+                    sizeof(mreq)) != 0) {
+        printf("\nFailed to join group");
+        return -1;
+    }
+    if (setsockopt(sock, IPPROTO_IPV6, IP_HDRINCL, &tmp, sizeof(tmp)) < 0 ) {
+        printf("\n Failed to set IP_HDRINCL options");
+        return -1;
+    }
 
     if (setsockopt(sock, SOL_SOCKET, SO_BINDTODEVICE, 
                 (void *)&ifr, sizeof(ifr)) < 0) {
         perror("\nFailed to bind to interface ");
         return -1;
     }
+#endif
 
     serv_addr.sin6_family = AF_INET6;
     serv_addr.sin6_addr = in6addr_any;
@@ -121,7 +118,7 @@ int main ()
         no_of_bytes_received = recvfrom(sock, buffer, 255, 0,
                 (struct sockaddr*)&sender, &sendsize);
         printf("\nNumber of bytes received %d", no_of_bytes_received);
-        printf("\nFrom addr size %d", sendsize);
+  //      printf("\nFrom addr size %d", sendsize);
         if (sendsize) {
             struct sockaddr *from;
             from = (struct sockaddr *)&sender;
@@ -134,14 +131,16 @@ int main ()
                           INET6_ADDRSTRLEN);
                 getnameinfo((struct sockaddr *)&sender, sendsize, ipv6_addr_str,
                         INET6_ADDRSTRLEN, port, 10, NI_NUMERICHOST);
-                printf("\nSrc IP %s, Src Port %s(%d) In Index %d", 
+                printf("\nSrc IP %s, Src Port %s(%d) In Index %d \n", 
                         ipv6_addr_str,
                         port, ntohs(s->sin6_port), s->sin6_scope_id);
             }
         }
-        printf("\nData received - \"");
+        i = 0;
+        printf("\nData received(%d) - \"", no_of_bytes_received);
         while(no_of_bytes_received--) {
-            printf("%c",buffer[i++]);
+            printf(" %c",buffer[i++]);
+            printf("\n");
         }
         printf("\"\n");
     }
