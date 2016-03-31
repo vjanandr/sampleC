@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "hello-tp.h"
+#include <lttng/tracef.h>
 
 int main(int argc, char *argv[])
 {
@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
      * they are in fact parts of variables created by macros in
      * hello-tp.h.
      */
+    /*
     tracepoint(hello_world, my_first_tracepoint, 23, "hi there!");
 
     for (x = 0; x < argc; ++x) {
@@ -35,6 +36,10 @@ int main(int argc, char *argv[])
     puts("Quitting now!");
 
     tracepoint(hello_world, my_second_tracepoint, x * x, "x^2");
+    tracepoint(hello_world, my_third_tracepoint, x, "Checkout the third tracepoint");
+    */
+    tracef("my message, my integer: %d", 20);
+
 
     return 0;
 }
