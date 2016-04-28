@@ -1,0 +1,19 @@
+automake
+========
+Manual Files 
+a. configure.ac  --> Autoconf --> configure --> Makefile
+                                       |
+b. Makefile.am   --> Automake --> Makefile.in 
+
+https://www.youtube.com/watch?v=4q_inV9M_us
+
+1. Create the appropriate configure.ac and Makefile.am files.
+2. autoreconf -i --> Generate the "configure & Makefile.in"
+3. ./configure; make --> should generate the required output files.
+4. DESTDIR=$OUTPUT_DIR make install /* Install the required output files in the
+                                   specified directory */
+5. DESTDIR=$OUTPUT_DIR make uninstall /* Remove the installed file from 
+                                      OUTPUT_DIR */
+6. make dist /* Create a tar ball */
+7. make distcheck /* Create a tar ball ready for distribution */
+8. 
