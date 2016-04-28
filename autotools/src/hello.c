@@ -1,5 +1,5 @@
 #include <config.h>
-#include "whine.h"
+#include <whine.h>
 #include <stdio.h>
 int main ()
 {

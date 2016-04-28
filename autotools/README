@@ -23,3 +23,5 @@ things.
 9.b Recursive Automake works by adding "SUBDIRS=" in top Makefile.am
 9.c Create Makefile.am in each dir, use AC_CONFIG_FILES in configure.ac to list
 them
+10 include_HEADERS in Makefile.am is used to specify install headers.
+11 Use CPPFLAGS to provide the include header directories
