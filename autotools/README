@@ -6,6 +6,8 @@ a. configure.ac  --> Autoconf --> configure --> Makefile
 b. Makefile.am   --> Automake --> Makefile.in 
 
 https://www.youtube.com/watch?v=4q_inV9M_us
+https://www.youtube.com/watch?v=tku2h_fPxhc
+https://www.youtube.com/watch?v=e-uYBb554LU
 
 1. Create the appropriate configure.ac and Makefile.am files.
 2. autoreconf -i --> Generate the "configure & Makefile.in"
@@ -23,5 +25,7 @@ things.
 9.b Recursive Automake works by adding "SUBDIRS=" in top Makefile.am
 9.c Create Makefile.am in each dir, use AC_CONFIG_FILES in configure.ac to list
 them
-10 include_HEADERS in Makefile.am is used to specify install headers.
-11 Use CPPFLAGS to provide the include header directories
+10. include_HEADERS in Makefile.am is used to specify install headers.
+11. Use CPPFLAGS to provide the include header directories
+12. Autoconfiscation:
+12.a Changing a program's build system to use autotools.
