@@ -98,7 +98,7 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_hello_OBJECTS = hello.$(OBJEXT)
+am_hello_OBJECTS = hello.$(OBJEXT) whine.$(OBJEXT)
 hello_OBJECTS = $(am_hello_OBJECTS)
 hello_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_$(V))
@@ -259,7 +259,7 @@ target_alias =
 top_build_prefix = 
 top_builddir = .
 top_srcdir = .
-hello_SOURCES = hello.c
+hello_SOURCES = hello.c whine.c whine.h
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -368,6 +368,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/hello.Po
+include ./$(DEPDIR)/whine.Po
 
 .c.o:
 	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

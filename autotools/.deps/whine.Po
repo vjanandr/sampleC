@@ -1,6 +1,5 @@
-hello.o: hello.c /usr/include/stdc-predef.h config.h whine.h \
- /usr/include/stdio.h /usr/include/features.h \
- /usr/include/i386-linux-gnu/sys/cdefs.h \
+whine.o: whine.c /usr/include/stdc-predef.h whine.h /usr/include/stdio.h \
+ /usr/include/features.h /usr/include/i386-linux-gnu/sys/cdefs.h \
  /usr/include/i386-linux-gnu/bits/wordsize.h \
  /usr/include/i386-linux-gnu/gnu/stubs.h \
  /usr/include/i386-linux-gnu/gnu/stubs-32.h \
@@ -12,11 +11,9 @@ hello.o: hello.c /usr/include/stdc-predef.h config.h whine.h \
  /usr/include/i386-linux-gnu/bits/stdio_lim.h \
  /usr/include/i386-linux-gnu/bits/sys_errlist.h \
  /usr/include/i386-linux-gnu/bits/stdio.h \
- /usr/include/i386-linux-gnu/bits/stdio2.h
+ /usr/include/i386-linux-gnu/bits/stdio2.h config.h
 
 /usr/include/stdc-predef.h:
-
-config.h:
 
 whine.h:
 
@@ -53,3 +50,5 @@ whine.h:
 /usr/include/i386-linux-gnu/bits/stdio.h:
 
 /usr/include/i386-linux-gnu/bits/stdio2.h:
+
+config.h:
