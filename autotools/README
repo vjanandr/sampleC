@@ -17,3 +17,9 @@ https://www.youtube.com/watch?v=4q_inV9M_us
 6. make dist /* Create a tar ball */
 7. make distcheck /* Create a tar ball ready for distribution */
 8. hello_CPPFLAGS = -DDEBUG /* Add target specific flags */
+9. Automake supports recursive make, but this is the most recommended way to do
+things.
+9.a Just have one big Makefile.am
+9.b Recursive Automake works by adding "SUBDIRS=" in top Makefile.am
+9.c Create Makefile.am in each dir, use AC_CONFIG_FILES in configure.ac to list
+them
