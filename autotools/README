@@ -16,4 +16,4 @@ https://www.youtube.com/watch?v=4q_inV9M_us
                                       OUTPUT_DIR */
 6. make dist /* Create a tar ball */
 7. make distcheck /* Create a tar ball ready for distribution */
-8. 
+8. hello_CPPFLAGS = -DDEBUG /* Add target specific flags */
