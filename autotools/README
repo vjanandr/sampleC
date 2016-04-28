@@ -9,6 +9,11 @@ https://www.youtube.com/watch?v=4q_inV9M_us
 https://www.youtube.com/watch?v=tku2h_fPxhc
 https://www.youtube.com/watch?v=e-uYBb554LU
 
+https://www.lrde.epita.fr/~adl/dl/autotools.pdf
+https://www.gnu.org/software/automake/manual/html_node/index.html#SEC_Contents
+
+Notes
+=====
 1. Create the appropriate configure.ac and Makefile.am files.
 2. autoreconf -i --> Generate the "configure & Makefile.in"
 3. ./configure; make --> should generate the required output files.

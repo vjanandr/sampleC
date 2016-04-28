@@ -296,7 +296,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 hello_CPPFLAGS = -DDEBUG -Iinc
 include_HEADERS = inc/whine.h
-hello_SOURCES = src/hello.c src/whine.c inc/whine.h
+hello_SOURCES = src/hello.c src/whine.c
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 

@@ -250,7 +250,7 @@ PACKAGE_VERSION = 0.01
 PATH_SEPARATOR = :
 SET_MAKE = 
 SHELL = /bin/bash
-STRIP = 
+STRIP = strip
 VERSION = 0.01
 abs_builddir = /home/lttng/sampleC/autotools
 abs_srcdir = /home/lttng/sampleC/autotools
@@ -263,14 +263,14 @@ am__quote =
 am__tar = $${TAR-tar} chof - "$$tardir"
 am__untar = $${TAR-tar} xf -
 bindir = ${exec_prefix}/bin
-build_alias = 
+build_alias = i686-pc-linux-gnu
 builddir = .
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host_alias = 
+host_alias = i586-mingw32msvc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
@@ -296,7 +296,7 @@ top_builddir = .
 top_srcdir = .
 hello_CPPFLAGS = -DDEBUG -Iinc
 include_HEADERS = inc/whine.h
-hello_SOURCES = src/hello.c src/whine.c inc/whine.h
+hello_SOURCES = src/hello.c src/whine.c
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
