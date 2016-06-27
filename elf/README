@@ -1,0 +1,9 @@
+gcc -fPIC -c english.c
+gcc -shared -o libenglish.so english.o
+
+gcc -c hello1.c
+gcc -o hello1 hello1.o -L. -lenglish
+
+
+LD_LIBRARY_PATH=. ./hello1
+

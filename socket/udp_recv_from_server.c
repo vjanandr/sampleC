@@ -22,7 +22,6 @@ int main()
 
    sock = socket(PF_INET6, SOCK_DGRAM, IPPROTO_UDP);
 
-
    memset(&sin_store, 0, len);
 
    /* just use the first address returned in the structure */
@@ -45,9 +44,9 @@ int main()
        char port[10];
        len = sizeof(struct sockaddr_storage);
        printf("\n len before %d", len);
-       status = recvfrom(sock, buffer, MAXBUF, 0, 
+       status = recvfrom(sock, buffer, MAXBUF, 0,
                          (struct sockaddr *)&sin_store, &len);
-       printf("\n len after %d sizeof(sockaddr_in6) %d", len, 
+       printf("\n len after %d sizeof(sockaddr_in6) %d", len,
                (int)sizeof(struct sockaddr_in6));
        sin6frm = (struct sockaddr_in6 *)&sin_store;
        printf("\nbuffer : %s", buffer);

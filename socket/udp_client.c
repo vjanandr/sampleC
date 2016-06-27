@@ -1,8 +1,8 @@
-/* $Id$ 
- * 
+/* $Id$
  *
- * 
- * 
+ *
+ *
+ *
  */
 
 #include <stdio.h>
@@ -47,11 +47,10 @@ int main(int argc, char* argv[])
    sainfo.ai_family = PF_INET6;
    sainfo.ai_socktype = SOCK_DGRAM;
    sainfo.ai_protocol = IPPROTO_UDP;
-   status = getaddrinfo("fd08:2eef:c2ee:0:aabb:cc00:c900:4", 
+   status = getaddrinfo("fd08:2eef:c2ee:0:aabb:cc00:c900:4",
                         "4936", &sainfo, &psinfo);
 
-   switch (status) 
-     {
+   switch (status) {
       case EAI_FAMILY: printf("family\n");
         break;
       case EAI_SOCKTYPE: printf("stype\n");
@@ -62,7 +61,7 @@ int main(int argc, char* argv[])
         break;
       case EAI_SERVICE: printf("service\n");
         break;
-     }
+   }
    sprintf(buffer,"Hello World");
 
    status = sendto(sock, buffer, strlen(buffer), 0,
