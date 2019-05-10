@@ -11,5 +11,5 @@ void printrightbit (int a)
 }
 int main ()
 {
-    printrightbit(7);
+    printrightbit(44);
 }
