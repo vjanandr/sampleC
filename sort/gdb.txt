@@ -1,0 +1,11 @@
+Currently logging to "gdb.txt".
+Future logs will be written to abc.txt.
+Logs will be appended to the log file.
+Output will be logged and displayed.
+Starting program: /home/vjanandr/sampleC/sort/a.out 
+[Inferior 1 (process 2766) exited normally]
+Starting program: /home/vjanandr/sampleC/sort/a.out 
+[Inferior 1 (process 2781) exited normally]
+Starting program: /home/vjanandr/sampleC/sort/a.out 
+[Inferior 1 (process 2782) exited normally]
+Already logging to gdb.txt.
