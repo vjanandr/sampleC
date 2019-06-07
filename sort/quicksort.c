@@ -30,18 +30,9 @@ int partition (int a[], int lpos, int rpos)
             j--;
         } while (a[j] > pivot); // not required because atleast the pivot should bail this out.
         if (i < j) {
-            if (i < 0 || j > 9 ) {
-                printf("\n i = %d , j = %d exceeds limit1", i ,j);
-                break;
-            }
             swap(a[i], a[j]);
         }
     }
-    printf("\n i = %d j = %d lpos = %d rpos = %d", i, j, lpos, rpos);
-            if (i < 0 || j > 9 ) {
-                printf("\n i = %d , j = %d exceeds limit2", i ,j);
-                return j;
-            }
     swap(a[lpos], a[j]);
     return j;
 }
