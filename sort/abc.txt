@@ -1,4 +1,0 @@
-Starting program: /home/vjanandr/sampleC/sort/a.out 
-[Inferior 1 (process 2798) exited normally]
-Undefined command: "exit".  Try "help".
-Undefined command: "exit".  Try "help".
