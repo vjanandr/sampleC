@@ -23,22 +23,12 @@ int partition (int a[], int lpos, int rpos)
     int j = rpos+1;
 
     while (i < j) {
-        /*
-        while (a[i++] <= pivot) {
-        }
-        while (a[j--] > pivot) {
-        }
-        if (i > 9) 
-            printf("\n i crossed limit");
-        if (j < 0) 
-            printf("\n j crossed limit");
-            */
         do {
             i++;
-        } while (a[i] <= pivot);
+        } while ((a[i] <= pivot) && (i <= rpos));
         do {
             j--;
-        } while (a[j] > pivot);
+        } while (a[j] > pivot); // not required because atleast the pivot should bail this out.
         if (i < j) {
             swap(a[i], a[j]);
         }
