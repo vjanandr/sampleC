@@ -1,5 +1,5 @@
 #include <stdio.h>
-int a_[10] = {54,81,37,44,29,47,59,83,51,45};
+int a_[10] = {0,0,44,47,45,44, 0,0,45, 44};
 
 void print (int a[], char *str, int size)
 {
@@ -14,20 +14,28 @@ void print (int a[], char *str, int size)
 
 void countingSort (int a[], int n, int r)
 {
-    int t[83];
+    int t[84];
     int c[10];
     int i = 0;
-    while (i < 83) {
+    while (i < 84) {
         t[i++] = 0;
     }
     i=0;
+    /*
+    while (i < n) 
+        c[i++] = 99;
+    i = 0;
+    */
     while (i < n) {
         t[a[i]] = t[a[i]] + 1;
         i++;
     }
+    for (i= 1; i < 84; i++) {
+        t[i] = t[i-1] + t[i];
+    }
     for (i = 0; i < n; i++) {
         c[t[a[i]] - 1] = a[i];
-        t[a[i]] = t[a[i]] +1;
+        t[a[i]] = t[a[i]]-1;
     }
     for (i = 0; i<n;i++) {
         a[i] = c[i];

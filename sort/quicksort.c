@@ -26,6 +26,7 @@ int partition (int a[], int lpos, int rpos)
         do {
             i++;
         } while ((a[i] <= pivot) && (i <= rpos));
+//        } while ((a[i] <= pivot));
         do {
             j--;
         } while (a[j] > pivot); // not required because atleast the pivot should bail this out.
